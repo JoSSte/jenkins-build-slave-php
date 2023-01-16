@@ -1,0 +1,8 @@
+version:  '2'
+
+services:
+  app:
+    build: .
+    image: jstevnsvig/jenkins-build-slave-php:v8.2
+    #stdin_open: true # docker run -i
+    #tty: true        # docker run -t

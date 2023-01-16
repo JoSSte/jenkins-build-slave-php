@@ -1,6 +1,6 @@
 # https://github.com/jenkinsci/docker-agent/
-FROM jenkins/agent as agent
-#FROM jenkins/inbound-agent:jdk11 as agent
+#FROM jenkins/agent as agent
+FROM jenkins/inbound-agent:jdk11 as agent
 #FROM jenkins/inbound-agent as agent
 
 LABEL maintainer="Jonas Stumph Stevnsvig <jonas@stevnsvig.com>"
@@ -13,7 +13,7 @@ RUN ln -snf /usr/share/zoneinfo/"${TZ}" /etc/localtime && echo "${TZ}" > /etc/ti
 # update apt cache
 RUN apt-get update \
 &&  apt-get upgrade -qy \
-&&  apt-get install -y lsb-release ca-certificates apt-transport-https software-properties-common gnupg2
+&&  apt-get install -y curl lsb-release ca-certificates apt-transport-https software-properties-common gnupg2
 
 # add php8 repo
 RUN curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg \
@@ -30,3 +30,5 @@ RUN apt-get install -qy rsync php8.2-curl php8.2-gd apache2 php8.2 unzip php8.2-
 RUN apt-get -qy autoremove
 
 USER jenkins
+
+ENTRYPOINT ["jenkins-slave"]

@@ -16,3 +16,7 @@ I prefer not having to remember a lot of parameters and so on, so there is both 
 ### Debugging
 * `docker-compose run --rm app`
 * `docker-compose run --rm -u root app`
+
+### Pushing to hub.docker.com
+`docker login`
+`docker push jstevnsvig/jenkins-build-slave-php:vx.y` replace x.y with version you are adding

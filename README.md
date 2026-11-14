@@ -1,9 +1,10 @@
 # PHP docker build slave
+
 Docker build slave for php for Jenkins
 
 ## About
-php builder for running in kubernetes with jnlp
 
+php builder for running in kubernetes with jnlp
 
 ### Create
 
@@ -14,9 +15,11 @@ I prefer not having to remember a lot of parameters and so on, so there is both 
 ## Useful tidbits
 
 ### Debugging
+
 * `docker-compose run --rm app`
 * `docker-compose run --rm -u root app`
 
 ### Pushing to hub.docker.com
+
 `docker login`
 `docker push jstevnsvig/jenkins-build-slave-php:vx.y` replace x.y with version you are adding

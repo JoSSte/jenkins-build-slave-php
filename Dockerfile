@@ -1,7 +1,6 @@
 # https://github.com/jenkinsci/docker-agent/
-#FROM jenkins/agent as agent
 FROM jenkins/inbound-agent:latest-jdk21 as agent
-#FROM jenkins/inbound-agent as agent
+
 
 LABEL maintainer="Jonas Stumph Stevnsvig <jonas@stevnsvig.com>"
 # set user to root for installation of packages
@@ -21,7 +20,10 @@ RUN curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.or
 &&  apt-get update
 
 # install php8 & composer
-RUN apt-get install -qy rsync zip php8.5-curl php8.5-gd apache2 php8.5 unzip php8.5-mysql php8.5-zip php8.5-mbstring php-xdebug php-pear* \
+ARG PHP_VERSION=8.5
+RUN apt-get install -qy rsync zip php${PHP_VERSION}-curl php${PHP_VERSION}-gd php${PHP_VERSION} \
+    php${PHP_VERSION}-mysql php${PHP_VERSION}-zip php${PHP_VERSION}-mbstring \
+apache2 unzip  php-xdebug php-pear* \
 &&  curl -sSLo composer-setup.php https://getcomposer.org/installer \
 &&  php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
 &&  composer self-update  

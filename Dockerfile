@@ -1,6 +1,6 @@
 # https://github.com/jenkinsci/docker-agent/
 #FROM jenkins/agent as agent
-FROM jenkins/inbound-agent:jdk11 as agent
+FROM jenkins/inbound-agent:latest-jdk21 as agent
 #FROM jenkins/inbound-agent as agent
 
 LABEL maintainer="Jonas Stumph Stevnsvig <jonas@stevnsvig.com>"
@@ -13,7 +13,7 @@ RUN ln -snf /usr/share/zoneinfo/"${TZ}" /etc/localtime && echo "${TZ}" > /etc/ti
 # update apt cache
 RUN apt-get update \
 &&  apt-get upgrade -qy \
-&&  apt-get install -y curl lsb-release ca-certificates apt-transport-https software-properties-common gnupg2
+&&  apt-get install -y curl wget lsb-release ca-certificates apt-transport-https gnupg2
 
 # add php8 repo
 RUN curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg \
@@ -21,7 +21,7 @@ RUN curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.or
 &&  apt-get update
 
 # install php8 & composer
-RUN apt-get install -qy rsync zip php8.2-curl php8.2-gd apache2 php8.2 unzip php8.2-mysql php8.2-zip php8.2-mbstring php-xdebug php-pear* \
+RUN apt-get install -qy rsync zip php8.5-curl php8.5-gd apache2 php8.5 unzip php8.5-mysql php8.5-zip php8.5-mbstring php-xdebug php-pear* \
 &&  curl -sSLo composer-setup.php https://getcomposer.org/installer \
 &&  php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
 &&  composer self-update  

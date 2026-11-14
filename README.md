@@ -23,3 +23,7 @@ I prefer not having to remember a lot of parameters and so on, so there is both 
 
 `docker login`
 `docker push jstevnsvig/jenkins-build-slave-php:vx.y` replace x.y with version you are adding
+
+### Veryfying php version
+
+`docker run --rm --entrypoint php jstevnsvig/jenkins-build-slave-php:vx.y.z -v`

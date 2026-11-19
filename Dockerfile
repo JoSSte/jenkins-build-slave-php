@@ -23,7 +23,8 @@ RUN curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.or
 ARG PHP_VERSION=8.5
 RUN apt-get install -qy rsync zip php${PHP_VERSION}-curl php${PHP_VERSION}-gd php${PHP_VERSION} \
     php${PHP_VERSION}-mysql php${PHP_VERSION}-zip php${PHP_VERSION}-mbstring \
-apache2 unzip  php-xdebug php-pear* \
+    php${PHP_VERSION}-xml \
+    apache2 unzip  php-xdebug php-pear* \
 &&  curl -sSLo composer-setup.php https://getcomposer.org/installer \
 &&  php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
 &&  composer self-update  
